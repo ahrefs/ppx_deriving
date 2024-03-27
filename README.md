@@ -15,7 +15,7 @@ Sponsored by [Evil Martians](http://evilmartians.com).
 [yojson]: https://github.com/ocaml-ppx/ppx_deriving_yojson#usage
 [protobuf]: https://github.com/ocaml-ppx/ppx_deriving_protobuf#usage
 
-**Note:** since _deriving_ was released by whitequark in 2014, the OCaml ppx ecosystem has changed a lot. For new projects wishing to create a new deriving plugin, we recommend using [ppxlib](https://github.com/ocaml-ppx/ppxlib) directly. The module [Ppxlib.Deriving](https://ocaml-ppx.github.io/ppxlib/ppxlib/Ppxlib/Deriving/index.html) provide functionality similar to _deriving_, better integrated with ppxlib, and offers a nicer API in some places. _deriving_ is still maintained to keep existing plugins working as well as possible. Although note that the above deprecation note only covers the API and not the plugins (e.g. `ppx_deriving.show`, `ppx_deriving.eq`, ...).
+**Note:** since _deriving_ was released by whitequark in 2014, the OCaml ppx ecosystem has changed a lot. For new projects wishing to create a new deriving plugin, we recommend using [ppxlib](https://github.com/ocaml-ppx/ppxlib) directly. The module [Ppxlib.Deriving](https://ocaml-ppx.github.io/ppxlib/ppxlib/Ppxlib/Deriving/index.html) provide functionality similar to _deriving_, better integrated with ppxlib, and offers a nicer API in some places. _deriving_ is still maintained to keep existing plugins working as well as possible. Although note that the above deprecation note only covers the API and not the plugins (e.g. `ppx_deriving_mel.show`, `ppx_deriving_mel.eq`, ...).
 
 Installation
 ------------
@@ -31,19 +31,19 @@ To use _deriving_, only one modification is needed: you need to require via ocam
 
 For example, if you are using ocamlbuild, add the following to `_tags` to use the default _deriving_ plugins:
 
-    <src/*>: package(ppx_deriving.std)
+    <src/*>: package(ppx_deriving_mel.std)
 
 With Dune, you should add a `preprocess` directive to your target:
 
     (executable
       (libraries whatever)
-      (preprocess (pps ppx_deriving.show ppx_deriving.ord))
+      (preprocess (pps ppx_deriving_mel.show ppx_deriving_mel.ord))
       (name blah))
 
 Dune's `pps` directive allows faster preprocessing by linking the specified preprocessors into a single executable (documented [here](https://readthedocs.org/projects/dune/downloads/pdf/latest/#subsection.5.7.2)). This can significantly speed up compilation on large projects which use many derivers.
 
 
-If you are using another buildsystem, just make sure it passes `-package ppx_deriving.whatever` to ocamlfind.
+If you are using another buildsystem, just make sure it passes `-package ppx_deriving_mel.whatever` to ocamlfind.
 
 Usage
 -----
@@ -307,7 +307,7 @@ By default, _deriving_ dynlinks every plugin, whether invoked as a part of a bat
 
 ```
 $ ocamlfind opt -predicates ppx_driver -package ppx_deriving_foo -package ppx_deriving_bar \
-                -package ppx_deriving.main -linkpkg -linkall -o ppx_driver
+                -package ppx_deriving_mel.main -linkpkg -linkall -o ppx_driver
 ```
 
 Currently, the resulting ppx driver still depends on Dynlink as well as retains the ability to load more plugins.
@@ -330,7 +330,7 @@ exists_if = "ppx_deriving_yojson.cma"
 requires(-ppx_driver) = "ppx_deriving yojson"
 ppxopt(-ppx_driver) = "ppx_deriving,./ppx_deriving_yojson.cma"
 # The following part affects ppx driver compilation.
-requires(ppx_driver) = "ppx_deriving.api"
+requires(ppx_driver) = "ppx_deriving_mel.api"
 archive(ppx_driver, byte) = "ppx_deriving_yojson.cma"
 archive(ppx_driver, native) = "ppx_deriving_yojson.cmxa"
 ```
@@ -344,7 +344,7 @@ let () = dispatch (
   function
   | After_rules ->
     (* Assuming files tagged with deriving_foo are already tagged with
-       package(ppx_deriving) or anything that uses it, e.g. package(ppx_deriving.std). *)
+       package(ppx_deriving) or anything that uses it, e.g. package(ppx_deriving_mel.std). *)
     flag ["ocaml"; "compile"; "deriving_foo"] &
       S[A"-ppxopt"; A"ppx_deriving,src/ppx_deriving_foo.cma"]
   | _ -> ()

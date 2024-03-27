@@ -1,13 +1,19 @@
 (rule
  (targets ppx_deriving_show.ml)
- (action (run %{bin:cppo} -V OCAML:%{ocaml_version}
-              %{dep:ppx_deriving_show.cppo.ml} -o %{targets})))
+ (action
+  (run
+   %{bin:cppo}
+   -V
+   OCAML:%{ocaml_version}
+   %{dep:ppx_deriving_show.cppo.ml}
+   -o
+   %{targets})))
 
 (library
  (name ppx_deriving_show)
- (public_name ppx_deriving.show)
+ (public_name ppx_deriving_mel.show)
  (synopsis "[@@deriving show]")
  (preprocess
   (pps ppxlib.metaquot))
- (libraries compiler-libs.common ppxlib ppx_deriving.api)
+ (libraries compiler-libs.common ppxlib ppx_deriving_mel.api)
  (kind ppx_deriver))
