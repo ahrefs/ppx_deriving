@@ -6,9 +6,9 @@
 
 (library
  (name ppx_deriving_map)
- (public_name ppx_deriving_mel.map)
+ (public_name ppx_deriving_melange.map)
  (synopsis "[@@deriving map]")
  (preprocess
   (pps ppxlib.metaquot))
- (libraries compiler-libs.common ppxlib ppx_deriving_mel.api)
+ (libraries compiler-libs.common ppxlib ppx_deriving_melange.api)
  (kind ppx_deriver))

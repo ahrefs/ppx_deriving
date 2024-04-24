@@ -1,6 +1,6 @@
 (library
  (name ppx_deriving_std)
- (public_name ppx_deriving_mel.std)
+ (public_name ppx_deriving_melange.std)
  (synopsis "Meta-package for all built-in derivers")
  (libraries
   ppx_deriving_ord

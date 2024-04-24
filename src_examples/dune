@@ -1,7 +1,7 @@
 (executable
  (name print_test)
  (preprocess
-  (pps ppx_deriving_mel.show)))
+  (pps ppx_deriving_melange.show)))
 
 (alias
  (name examples)

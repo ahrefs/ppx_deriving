@@ -5,5 +5,5 @@
 
 (test
  (name test_deriving_fold)
- (libraries ounit2 ppx_deriving.runtime)
- (preprocess (pps ppx_deriving.fold)))
+ (libraries ounit2 ppx_deriving_melange.runtime)
+ (preprocess (pps ppx_deriving_melange.fold)))

@@ -11,9 +11,9 @@
 
 (library
  (name ppx_deriving_iter)
- (public_name ppx_deriving_mel.iter)
+ (public_name ppx_deriving_melange.iter)
  (synopsis "[@@deriving iter]")
  (preprocess
   (pps ppxlib.metaquot))
- (libraries compiler-libs.common ppxlib ppx_deriving_mel.api)
+ (libraries compiler-libs.common ppxlib ppx_deriving_melange.api)
  (kind ppx_deriver))

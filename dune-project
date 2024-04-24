@@ -2,5 +2,5 @@
 
 (using melange 0.1)
 
-(name ppx_deriving_mel)
+(name ppx_deriving_melange)
 (version 5.2.1)

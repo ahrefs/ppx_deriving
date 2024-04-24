@@ -11,9 +11,9 @@
 
 (library
  (name ppx_deriving_eq)
- (public_name ppx_deriving_mel.eq)
+ (public_name ppx_deriving_melange.eq)
  (synopsis "[@@deriving eq]")
  (preprocess
   (pps ppxlib.metaquot))
- (libraries compiler-libs.common ppxlib ppx_deriving_mel.api)
+ (libraries compiler-libs.common ppxlib ppx_deriving_melange.api)
  (kind ppx_deriver))

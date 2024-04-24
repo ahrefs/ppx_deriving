@@ -22,7 +22,7 @@ let dynlink ?(loc=Location.none) filename =
 
 let init_findlib = lazy (
   Findlib.init ();
-  Findlib.record_package Findlib.Record_core "ppx_deriving_mel.api";
+  Findlib.record_package Findlib.Record_core "ppx_deriving_melange.api";
 )
 
 let load_ocamlfind_package ?loc pkg =
